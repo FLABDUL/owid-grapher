@@ -20,6 +20,7 @@
                 "import": "./dist/grapher.js"
             },
             "./grapher.css": "./dist/grapher.css",
+            "./grapher-schema.json": "./dist/grapher-schema.json",
             "./standalone": {
                 "types": "./dist/grapher.d.ts",
                 "import": "./dist/grapher.standalone.min.js"
@@ -44,11 +45,13 @@
         "dist/grapher.standalone.min.js",
         "dist/grapher.standalone.min.js.map",
         "dist/grapher.css",
+        "dist/grapher-schema.json",
         "dist/grapher.d.ts",
         "dist/grapher.d.ts.map"
     ],
     "scripts": {
-        "build": "tsdown",
+        "build": "tsdown && yarn buildSchema",
+        "buildSchema": "tsx scripts/buildLatestGrapherSchema.ts",
         "clean": "rm -rf dist dist-package",
         "startDemoServer": "http-server . -p 8433 -c-1 -o /demo.html",
         "testPackage": "yarn testPackage:pack && yarn testPackage:vitest && yarn testPackage:attw",
@@ -63,9 +66,9 @@
     "author": "",
     "devDependencies": {
         "@arethetypeswrong/cli": "^0.18.5",
-        "@fortawesome/fontawesome-svg-core": "^6.7.2",
-        "@fortawesome/free-solid-svg-icons": "^6.7.2",
-        "@fortawesome/react-fontawesome": "^0.2.2",
+        "@fortawesome/fontawesome-svg-core": "^7.3.1",
+        "@fortawesome/free-solid-svg-icons": "^7.3.1",
+        "@fortawesome/react-fontawesome": "^3.5.0",
         "@internationalized/date": "^3.12.3",
         "@ourworldindata/components": "workspace:^",
         "@ourworldindata/core-table": "workspace:^",
@@ -106,16 +109,18 @@
         "react-aria-components": "^1.20.0",
         "react-dom": "^19.2.4",
         "react-flip-toolkit": "^7.2.4",
-        "remeda": "^2.32.0",
+        "remeda": "^2.42.0",
         "sass": "^1.89.2",
         "tippy.js": "^6.3.7",
         "topojson-client": "^3.1.0",
         "ts-pattern": "^5.8.0",
         "tsdown": "^0.22.14",
+        "tsx": "^4.23.0",
         "url-join": "^5.0.0",
         "usehooks-ts": "^3.1.1",
         "versor": "^0.2.0",
-        "vitest": "^4.1.10"
+        "vitest": "^4.1.10",
+        "yaml": "^2.8.3"
     },
     "license": "SEE LICENSE IN LICENSE.md"
 }
