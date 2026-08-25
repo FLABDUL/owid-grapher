@@ -47,10 +47,10 @@ The `/latest` filter offers five options: article, data insight, data update, we
 
 ### 6. Authoring choices create card variants within a type
 
-Two content types expose editorial knobs that change what the card shows. Both follow the same shape: an authoring choice in the gdoc → conditional behavior in the indexer (which linked content to load) → variant rendering in the card.
+Articles expose editorial knobs that change what the card shows: an authoring choice in the gdoc → conditional behavior in the indexer (which linked content to load) → variant rendering in the card.
 
 - **Articles** can supply two card-only override fields. `latest-feed-featured-image` swaps the card thumbnail (the article page itself still uses `featured-image`). `latest-feed-excerpt` switches the excerpt from the default plain text to ArticleBlocks (with internal links and formatting) plus a "Read the article" affordance — see [`LatestArticleHit`](./LatestArticleHit.tsx). The rich-excerpt path is also why the indexer conditionally loads linked charts/documents for articles.
-- **Announcements** come in two shapes: CTA (top-level `{.cta}` block, empty body — renders excerpt + a single CTA button) and non-CTA (body-driven, usually contains an inline `{.cta}` block). The indexer skips loading linked charts/documents for CTA announcements since the excerpt-only rendering doesn't need them. The CTA shape is under review in [owid/owid-grapher#6464](https://github.com/owid/owid-grapher/issues/6464); if removed, this branch collapses.
+- **Announcements** are body-driven, with any call-to-action expressed as an inline `{.cta}` block in the body; the indexer always loads their linked charts/documents. (A second, excerpt-only shape with a top-level `{.cta}` field used to exist — removed in [owid/owid-grapher#7011](https://github.com/owid/owid-grapher/issues/7011).)
 
 ### 7. Standalone announcement pages are a preview surface
 
